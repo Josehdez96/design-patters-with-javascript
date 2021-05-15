@@ -85,6 +85,8 @@ String.prototype.showWarn = function () {
 const sayHi = 'Hola';
 sayHi.showWarn() // (warning) hola
 ```
+<br/>
+
 ### Module:
 It is based on the objects literals in JavaScript. When we define an object literal in JavaScript which one has methods and properties we're defining a module.
 
@@ -107,6 +109,7 @@ const myModule = {
 myModule.prop // 'myProp'
 myModule.showLanguage() // 'en'
 ```
+<br/>
 
 ### Revealing module:
 Unlike the **Module** design pattern, here, we use closures to define methods and properties either private or public.
@@ -130,3 +133,6 @@ myRevealingModule.add('myKey', 'myValue');
 myRevealingModule.showData() // TypeError: it is not a function (because it's private)
 myRevealingModule.show() // {myKey: 'myValue'}
 ```
+
+
+###
