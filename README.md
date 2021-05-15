@@ -84,4 +84,48 @@ const sayHi = 'Hola';
 sayHi.showWarn() // (warning) hola
 ```
 ### Module:
-It is based on the object literals in JavaScript.
+It is based on the objects literals in JavaScript. When we define an object literal in JavaScript which one has methods and properties we're defining a module.
+
+Example.js (**with ES6+**):
+```diff
+const myModule = {
+  prop: 'myProp';
+  config: {
+    language: 'en',
+    cache: false
+  },
+  setConfig: (config) =< {
+   myModule.config = config;
+  },
+  showLanguage: () => {
+    console.log(myModule.config.language)
+  }
+}
+
+myModule.prop // 'myProp'
+myModule.showLanguage() // 'en'
+```
+
+### Revealing module:
+Unlike the **Module** design pattern, here, we use closures to define methods and properties either private or public.
+
+Example.js (**with ES6+**):
+```diff
+const myRevealingModule = (() => {
+  const myObj = {};
+  
+  function showData() { // private method
+    console.log('myObj is:', myObj)
+  });
+  
+  return { // public methods
+    show: () => console.log(myObj),
+    add: (key, val) => myObj[key] = val
+  }
+})()
+
+myRevealingModule.add('myKey', 'myValue');
+myRevealingModule.showData() // TypeError: it is not a function (because it's private)
+myRevealingModule.show() // {myKey: 'myValue'}
+
+```
