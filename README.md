@@ -144,13 +144,21 @@ var dog = {
   breed: 'rottweiler',
 #  // We're not using arrow functions in the line above because these doesn't have "this context" and because we're using ES5 in this example
   bark: function () {
-    consolel.log('Guau, I'm a' + this.breed);
+    consolel.log('Guau, Im a' + this.breed);
   }
 }
 
+console.log(dog) // {breed: 'rotweiler', bark: [function]}
+
 var mySecondDog = Object.create(dog);
+# // If I'll try to show mySecondDog it logs an empty object because  the properties and methods are in the prototype, I mean in dog
+console.log(mySecondDog) // {}
+
 mySecondDog.bark(); // 'Guau, I'm a rottweiler'
 mySecondDog.breed = 'bullterrier';
 mySecondDog.bark() // 'Guau, I'm a bullterrier'
+
+# // If we replace a property or a method, it'll be owned only by the object that it changed it, in the example, only by mySecondDog, the prototype won't be modified
+console.log(mySecondDog) // {breed: 'bullterrier'}
 ```
 <br/>
