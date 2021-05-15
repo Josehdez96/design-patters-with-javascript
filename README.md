@@ -69,9 +69,9 @@ Object.prototype.log = function () {
   console.log(this)
 }
 
-const myObj = { Mykey: 'myValue' };
+var myObj = { Mykey: 'myValue' };
 # // The above line is syntactic sugar for:
-let myObj = new Object();
+var myObj = new Object();
 Object.defineProperty(myObj, 'myKey', {value: 'myValue'});
 
 myObj.log() // {myKey: 'myValue'};
@@ -82,7 +82,7 @@ String.prototype.showWarn = function () {
   console.warn(this);
 }
 
-const sayHi = 'Hola';
+var sayHi = 'Hola';
 sayHi.showWarn() // (warning) hola
 ```
 <br/>
@@ -133,6 +133,24 @@ myRevealingModule.add('myKey', 'myValue');
 myRevealingModule.showData() // TypeError: it is not a function (because it's private)
 myRevealingModule.show() // {myKey: 'myValue'}
 ```
+<br/>
 
+### Prototype:
+It's different to ***Constructor with prototypes pattern***. It is based in that we can take a defined object and based on that object we can create another prototypes to other objects (it's how the OOP inheritance is handle with JavaScript ES5), again, thank you ES6 for made the life easier!
 
-###
+Example.js (**with ES5**):
+```diff
+var dog = {
+  breed: 'rottweiler',
+#  // We're not using arrow functions in the line above because these doesn't have "this context" and because we're using ES5 in this example
+  bark: function () {
+    consolel.log('Guau, I'm a' + this.breed);
+  }
+}
+
+var mySecondDog = Object.create(dog);
+mySecondDog.bark(); // 'Guau, I'm a rottweiler'
+mySecondDog.breed = 'bullterrier';
+mySecondDog.bark() // 'Guau, I'm a bullterrier'
+```
+<br/>
