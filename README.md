@@ -19,46 +19,48 @@ To get started, we're able to use design patterns if these three rules are accom
 ## Creational patterns:
 
 ### Constructor:
-Here we use the <code>new</code> keyword to create a new object by instantiating a class (this facility or sintactic sugar comes with ES6)
+Here we use the <code>new</code> keyword to create a new object by instantiating a class (this facility or sintactic sugar comes with ES6).
 
 Example.js (**with ES6+**):
 ```diff
 class MyClass {
-  constructor(propertyValue) { // Look the Constructor here!
+# // Look, the Constructor is here in the below line!
+  constructor(propertyValue) { 
     this.property = propertyValue;
     this.property2 = 'hello';
-    this.method = () => { // We're using arrow functions here (comes with ES6 as well)
-      // I'm the method
+    this.method = () => {
+#      // I'm the method
     }
   }
 }
 
-const myNewInstance = new MyClass('property'); // We're using the "new" keyword.
-console.log(myNewInstance);
+# // We're using the "new" keyword in the next line
+const myNewInstance = new MyClass('prop'); 
+console.log(myNewInstance); // MyClass {property: 'prop', property2: 'hello', method: [function]}
 ```
 <br/>
 
 ### Constructor with prototypes:
-It is similar to the previous one but look that it changes where we defined the method. Be careful with this use because if you instance the class multiple times and change the method in one of those instances, you will change that method for all other instances.
+It is similar to the previous one but look that it changes where we defined the method. Be careful with this use because if you instance the class multiple times and change the method in one of these instances, you will change that method for all other instances.
 
 Example.js (**with ES6+**):
 ```diff
 class MyClass {
-  constructor(propertyValue) { // Look the Constructor here!
+  constructor(propertyValue) {
     this.property = propertyValue;
     this.property2 = 'hello';
 -   
   }
-+ method = () => { // We're using arrow functions here (comes with ES6 as well)
+#  // We're using arrow functions here (comes with ES6 as well)
++ method = () => { 
 +     // I'm the method
 +   }
 }
 
-
-const myNewInstance = new MyClass('property'); // We're using the "new" keyword.
-console.log(myNewInstance);
+const myNewInstance = new MyClass('property'); 
+console.log(myNewInstance); // MyClass {property: 'prop', property2: 'hello', method: [function]}
 ```
-**Remember that all things in JavaScript are objects or instances of it, so...**
+**Remember that almost everything in JavaScript are objects or instances of it, (the only that it isn't objects are the primitive values or types), let's check this statement out with an example from ES5:**
 
 Example2.js (**with ES5**):
 ```diff
@@ -67,16 +69,16 @@ Object.prototype.log = function () {
   console.log(this)
 }
 
-const myObj = { Mykey: 'myValue' }; // Sintactic sugar for:
-
+const myObj = { Mykey: 'myValue' };
+# // The above line is syntactic sugar for:
 let myObj = new Object();
 Object.defineProperty(myObj, 'myKey', {value: 'myValue'});
 
 myObj.log() // {myKey: 'myValue'};
 
-# // We're adding a new method to the String object that will show the String in the console as a warning.
+# // We're adding a new method to the String object that will show the String in the console as a warning
 String.prototype.showWarn = function () { 
-# // Look! String is an instance of Object, we're accesing to the Prototype (you have already seen it before as __proto__ in the browser), so yes, all things in JavaScript are Objects!
+# // Look! String is an instance of Object, we're accessing to the Prototype (you might already have seen it before as __proto__ in the browser), so yes, almost everything in JavaScript are objects!
   console.warn(this);
 }
 
@@ -127,5 +129,4 @@ const myRevealingModule = (() => {
 myRevealingModule.add('myKey', 'myValue');
 myRevealingModule.showData() // TypeError: it is not a function (because it's private)
 myRevealingModule.show() // {myKey: 'myValue'}
-
 ```
