@@ -90,7 +90,7 @@ sayHi.showWarn() // (warning) hola
 <br/>
 
 ### Module:
-It is based on the objects literals in JavaScript. When we define an object literal in JavaScript which one has methods and properties we're defining a module.
+It is based on the objects literals in JavaScript. When we define a literal object in JavaScript that has methods and properties, we are defining a module.
 
 Example.js (**with ES6+**):
 ```diff
