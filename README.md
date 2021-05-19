@@ -136,7 +136,7 @@ myRevealingModule.show() // {myKey: 'myValue'}
 <br/>
 
 ### Prototype:
-It's different to ***Constructor with prototypes pattern***. It is based in that we can take a defined object and based on that object we can create another prototypes to other objects (it's how the OOP inheritance is handle with JavaScript ES5), again, thank you ES6 for made the life easier!
+It's different to ***Constructor with prototypes pattern***. It's based on that we can take a defined object and based on that object we can create another prototypes to other objects (it's how the OOP inheritance is handle with JavaScript ES5), again, thank you ES6 for made the life easier!
 
 Example.js (**with ES5**):
 ```diff
@@ -162,3 +162,33 @@ mySecondDog.bark() // 'Guau, I'm a bullterrier'
 console.log(mySecondDog) // {breed: 'bullterrier'}
 ```
 <br/>
+
+## Creational patterns:
+
+### Mixin:
+This pattern will help us to add more functionalities to our classes with no need to alter the code inside the class. Therefore, all other new instances of that class will contain the original class and the extended functionalities.
+
+Example.js (**with ES6**):
+```diff
+class User {
+  constructor(name) {
+    this.name = name;
+  }
+}
+
+# //The next one is the object with new methods for the User class
+let mixin = {
+  sayHi() {
+  console.log(`Hi ${this.name}!`);
+  },
+  sayBye() {
+  console.log(`Good bye ${this.name}!`);
+  }
+}
+
+# // We increase the prototype
+Object.assign(User.prototype, mixin);
+
+const myUser = new User('Toothless');
+myUser.sayHi(); // Hi Toothless
+```
