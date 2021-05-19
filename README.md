@@ -1,5 +1,5 @@
 # Design patterns with Javascript
-I did this because I bought a course on design patterns and I want a summary for remember all the topics. Other than that I found that some of these patterns are difficult to understand in Javascript because mainly due its flexibility. So here is my summary on design patterns with Javascript. I hope it can be useful for someelse.
+I did this because I bought a course on design patterns and I want a summary for remember all the patterns with understandable examples. Other than that, I found that some of these patterns are difficult to understand in Javascript because mainly due the flexibility of the language. So here is my summary on design patterns with Javascript. I hope it can be useful for someelse.
 
 **Note:** For better understanding you should have a midium level in JavaScript.
 **To keep in mind:** ***Arrow functions doesn't have "this context"***
