@@ -166,7 +166,7 @@ console.log(mySecondDog) // {breed: 'bullterrier'}
 ## Creational patterns:
 
 ### Mixin:
-This pattern will help us to add more functionalities to our classes with no need to alter the code inside the class. Therefore, all other new instances of that class will contain the original class and the extended functionalities.
+This pattern will help us to add more functionality to the prototype of our classes with no need to alter the code inside the class. Therefore, all other new instances of that class will contain the original class and the extended functionalities.
 
 Example.js (**with ES6**):
 ```diff
@@ -191,4 +191,26 @@ Object.assign(User.prototype, mixin);
 
 const myUser = new User('Toothless');
 myUser.sayHi(); // Hi Toothless
+```
+
+<br/>
+
+### Decorator: 
+It's similar to Mixin pattern, but the main difference is that the Decorator pattern helps us to ONLY add more functionality to a specific instance of the class, not to all instances as Mixin does. Therefore, only a specific instance will change and all other new instances of that class will contain ONLY the original class without the extended functionalities. 
+
+I'll use the same example as Mixin so you can see the differences.
+
+Example.js (**with ES6**):
+```diff
+class User {
+  constructor(name) {
+    this.name = name;
+  }
+}
+
+myUser.agregarLastname = function (lastname) {
+    return `${this.name} ${lastname}`;
+}
+
+const myUser = new User('toothless');
 ```
