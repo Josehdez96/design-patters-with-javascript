@@ -1,7 +1,7 @@
 # Design patterns with Javascript
 I made this because I needed a document / summary with understandable examples of the design patterns in JavaScript. Other than that, I found that some of these patterns are difficult to understand in Javascript mainly due to the flexibility of the language, so I made examples of each one to better understand. So here is my document / summary on design patterns with Javascript. I hope it can be useful for someone.
 
-**Note:** For better understanding you should have a midium level in JavaScript.
+**Note:** For better understanding you should have a medium level in JavaScript.
 
 **To keep in mind:** ***Arrow functions doesn't have "this context"***
 
