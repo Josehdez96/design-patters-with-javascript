@@ -14,8 +14,8 @@ To get started, we're able to use design patterns if these three rules are accom
 
 ### There are three types of patterns
 #### * Creational: Those who help us to create objects.
-#### * Structural:  These help us to communicate different stuctures.
-#### * Behavior: Help to disengaged our code for to be easiest to understand.
+#### * Structural:  These, help us to communicate different stuctures.
+#### * Behavior: Those who help us to disengaged our code for to be easiest to understand.
 
 
 ## Creational patterns:
