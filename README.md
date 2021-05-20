@@ -3,9 +3,9 @@ I made this because I wanted a document / summary with understandable examples o
 
 **Note:** For better understanding you should have a medium level in JavaScript.
 
-**To keep in mind:** ***Arrow functions doesn't have "this context"***
-
-Remember: Design patterns are flexible!
+**To keep in mind:** 
+- ***Arrow functions doesn't have "this context".***
+- Design patterns are flexible!
 
 To get started, we're able to use design patterns if these three rules are accomplished:
 1. Meets a goal
