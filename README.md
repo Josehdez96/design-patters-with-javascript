@@ -192,7 +192,11 @@ let mixin = {
 Object.assign(User.prototype, mixin);
 
 const myUser = new User('Toothless');
+console.log(myUser) // {name: "Toothless", __proto__: {sayHi: [function], sayBye: [function], constructor: Class User}}
 myUser.sayHi(); // Hi Toothless
+
+const myAnotherUser = new User('Astrid');
+console.log(myAnotherUser) // {name: "Astrid", __proto__: {sayHi: [function], sayBye: [function], constructor: Class User}}
 ```
 
 <br/>
@@ -215,4 +219,11 @@ myUser.addLastname = function (lastname) {
 }
 
 const myUser = new User('toothless');
+console.log(myUser) // {name: "toothless", addLastname: [function], __proto__: constructor: class User}
+
+const myAnotherUser = new user('Astrid');
+console.log(myAnotherUser); // {name: "Astrid", __proto__: constructor: class User}
 ```
+
+<br/>
+### Facade: 
