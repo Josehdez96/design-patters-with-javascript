@@ -197,6 +197,7 @@ myUser.sayHi(); // Hi Toothless
 
 const myAnotherUser = new User('Astrid');
 console.log(myAnotherUser) // {name: "Astrid", __proto__: {sayHi: [function], sayBye: [function], constructor: Class User}}
+myAnotherUser.sayHi(); // Hi Astrid
 ```
 
 <br/>
@@ -214,14 +215,15 @@ class User {
   }
 }
 
+const myUser = new User('Toothless');
 myUser.addLastname = function (lastname) {
     return `${this.name} ${lastname}`;
 }
 
-const myUser = new User('toothless');
-console.log(myUser) // {name: "toothless", addLastname: [function], __proto__: constructor: class User}
+console.log(myUser) // {name: "Toothless", addLastname: [function], __proto__: constructor: class User}
+myUser.addLastname('Nightfury') // Toothless Nightfury
 
-const myAnotherUser = new user('Astrid');
+const myAnotherUser = new User('Astrid');
 console.log(myAnotherUser); // {name: "Astrid", __proto__: constructor: class User}
 ```
 
