@@ -226,4 +226,5 @@ console.log(myAnotherUser); // {name: "Astrid", __proto__: constructor: class Us
 ```
 
 <br/>
+
 ### Facade: 
