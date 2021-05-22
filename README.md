@@ -230,3 +230,50 @@ console.log(myAnotherUser); // {name: "Astrid", __proto__: constructor: class Us
 <br/>
 
 ### Facade: 
+It is used when we want to simplify the call to a function. For example calling another function called <code>get</code> to make a XMLHttpRequest call.
+
+Example.js (**with ES6**):
+```diff
+import https from 'https';
+
+# // we're using the get arrow function to enclose all the XMLHttpRequest boilerplate
+const get = (url) => new Promise((resolve, reject), => {
+  const completeFormat = url.split('/');
+  const host = completeFormat.shift();
+  
+  const options = {
+    hostname: host,
+    path: `/${completeFormat.join('/')}`,
+    method: 'GET'
+  };
+  
+  const req = https.request(options, res => {
+    res.setEncoding('utf8');
+    let body = '';
+    res.on('data', data => {
+      body += data;  
+    });
+    
+    res.on('end', data => {
+      const parsed = JSON.parse(body);
+      resolve(parsed);
+    });
+    
+    req.on('error', (err) => {
+       reject(err);
+    });
+    
+    req.end();
+  })
+});
+
+# // And here we just call the get arrow function instead of all the XMLHttpRequest boilerplate each time
+const asyncFunctionToCallGet = async () => {
+  const result = await get('jsonplaceholder.typicode.com/users');
+  console.log(result); // [{resolved promise}]
+};
+```
+
+<br/>
+
+### 
