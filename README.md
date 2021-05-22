@@ -232,6 +232,8 @@ console.log(myAnotherUser); // {name: "Astrid", __proto__: constructor: class Us
 ### Facade: 
 It is used when we want to simplify the call to a function. For example calling another function called <code>get</code> to make a XMLHttpRequest call.
 
+Tip: XMLHttpRequest is just for example, you can use browser API fetch or axios, both have already applied this pattern for you ease.
+
 Example.js (**with ES6**):
 ```diff
 import https from 'https';
@@ -276,4 +278,71 @@ const asyncFunctionToCallGet = async () => {
 
 <br/>
 
-### 
+### Adaptator:
+It's useful when we're using a class, method or library it's starting to give us problems and we want to update it. For update it we'll develop an adapter.
+
+```diff
+# // this is our fist (and a little outdated) version of the class
+class Api {
+  constructor() {
+    this.operations = function (url, opts, verb) {
+      switch (verb) {
+        case 'get':
+#         // return browser api fetch...
+        case 'post':
+#         // return browser api fetch...
+        default:
+          return
+      }
+    };
+  }
+}
+
+# // Our new version of the class
+class Api2 {
+  constructor() {
+    this.get = function (url, opts) {
+#     // return axios.get...
+    };
+    this.post = function (url, opts) {
+#     // return axios.post
+    };
+  }
+}
+
+# // And here we applied the adapter pattern, that if you notice the structure is similar to the first one (Api class) but under the hood it's using the second one or the new version (Api2 class)
+class ApiAdapter {
+  constructor () {
+    const api2 = new Api2();
+    
+    this.operations = function (url, opts, verb) {
+      switch (verb) {
+        case 'get':
+          return api2.get(url, opts);
+        case 'post':
+          return api2.post(url, opts);
+        default:
+          return
+      }
+    };
+  }
+}
+
+# // for example, we had been using the first version (Api class) with the fetch browser api
+const api = new Api();
+api.operations('www.amazon.com', { x: 1 }, 'get');
+
+# // however we create the new version to use axios because this use the fetch browser api and XMLHttpRequest directly for other browsers that require it that way, so since we create the new version, our team only uses the new way of calling http requests.
+const api2 = new Api2();
+api2.get('www.amazon.com', { x: 1 });
+
+# // but what happen with all the legacy code that it's using the first version for make http calls? Have we to replace it all?... The answer is no because we create an adapter for that, so we only have to replace the call, not the implementation.
+- const api = new Api();
+- api.operations('www.amazon.com', { x: 1 }, 'get');
++ const adapter = new ApiAdapter();
++ adapter.operations('www.amazon.com', { x: 1 }, 'get');
+```
+
+<br/>
+
+### :
