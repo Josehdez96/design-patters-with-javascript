@@ -7,18 +7,44 @@ I made this because I wanted a document / summary with understandable examples o
 - ***Arrow functions doesn't have "this context".***
 - Design patterns are flexible!
 
-To get started, we're able to use design patterns if these three rules are accomplished:
-1. Meets a goal
-2. Is usefull
-3. It has a wide application
+<pre>
+<code>
+TO DO LIST
+[] Finish Behavior patterns
+
+[] "javascript" for all code instead of "diff"
+[] delete # and replace - and + by (deleted) and (added) for all code
+
+[] Table of content Structural patterns
+[] Table of content Behavior patterns
+</code>
+</pre>
+
 
 ### There are three types of patterns
 #### * Creational: Those who help us to create objects.
 #### * Structural:  These, help us to communicate different stuctures.
 #### * Behavior: Those who help us to disengaged our code for to be easiest to understand.
 
+## Table of Contents  
+- **[Creational patterns.](#creational)**
+  -  [Constructor.](#constr)
+  -  [Constructor with prototypes.](#constrproto)
+  -  [Module.](#modul)
+  -  [Revealing module.](#revmodule)
+  -  [Prototype.](#prototy)
+
+- **[Structural patterns.](#structural)**
+
+- **[Behavior patterns.](#behavior)**
+
+<br/>
+
+<a name="creational"/>
 
 ## Creational patterns:
+
+<a name="constr"/>
 
 ### Constructor:
 Here we use the <code>new</code> keyword to create a new object by instantiating a class (this facility or sintactic sugar comes with ES6).
@@ -41,6 +67,8 @@ const myNewInstance = new MyClass('prop');
 console.log(myNewInstance); // MyClass {property: 'prop', property2: 'hello', method: [function]}
 ```
 <br/>
+
+<a name="constrproto"/>
 
 ### Constructor with prototypes:
 It is similar to the previous one but look that it changes where we defined the method. Be careful with this use because if you instance the class multiple times and change the method in one of these instances, you will change that method for all other instances.
@@ -89,6 +117,8 @@ sayHi.showWarn() // (warning) hola
 ```
 <br/>
 
+<a name="modul"/>
+
 ### Module:
 It is based on the objects literals in JavaScript. When we define a literal object in JavaScript that has methods and properties, we are defining a module.
 
@@ -113,6 +143,9 @@ myModule.showLanguage() // 'en'
 ```
 <br/>
 
+<a name="revmodule"/>
+
+
 ### Revealing module:
 Unlike the **Module** design pattern, here, we use closures to define methods and properties either private or public.
 
@@ -136,6 +169,8 @@ myRevealingModule.showData() // TypeError: it is not a function (because it's pr
 myRevealingModule.show() // {myKey: 'myValue'}
 ```
 <br/>
+
+<a name="prototy"/>
 
 ### Prototype:
 It's different to ***Constructor with prototypes pattern***. It's based on that we can take a defined object and based on that object we can create another prototypes to other objects (it's how the OOP inheritance is handle with JavaScript ES5), again, thank you ES6 for made the life easier!
@@ -165,7 +200,9 @@ console.log(mySecondDog) // {breed: 'bullterrier'}
 ```
 <br/>
 
-## Creational patterns:
+<a name="structural"/>
+
+## Structural patterns:
 
 ### Mixin:
 This pattern will help us to add more functionality to the prototype of our classes with no need to alter the code inside the class. Therefore, all other new instances of that class will contain the original class and the extended functionalities.
@@ -281,16 +318,16 @@ const asyncFunctionToCallGet = async () => {
 ### Adaptator:
 It's useful when we're using a class, method or library it's starting to give us problems and we want to update it. For update it we'll develop an adapter.
 
-```diff
-# // this is our fist (and a little outdated) version of the class
+```javascript
+// this is our fist (and a little outdated) version of the class
 class Api {
   constructor() {
     this.operations = function (url, opts, verb) {
       switch (verb) {
         case 'get':
-#         // return browser api fetch...
+          // return browser api fetch...
         case 'post':
-#         // return browser api fetch...
+          // return browser api fetch...
         default:
           return
       }
@@ -298,19 +335,19 @@ class Api {
   }
 }
 
-# // Our new version of the class
+// Our new version of the class
 class Api2 {
   constructor() {
     this.get = function (url, opts) {
-#     // return axios.get...
+      // return axios.get...
     };
     this.post = function (url, opts) {
-#     // return axios.post
+      // return axios.post
     };
   }
 }
 
-# // And here we applied the adapter pattern, that if you notice the structure is similar to the first one (Api class) but under the hood it's using the second one or the new version (Api2 class)
+// And here we applied the adapter pattern, that if you notice the structure is similar to the first one (Api class) but under the hood it's using the second one or the new version (Api2 class)
 class ApiAdapter {
   constructor () {
     const api2 = new Api2();
@@ -328,21 +365,23 @@ class ApiAdapter {
   }
 }
 
-# // for example, we had been using the first version (Api class) with the fetch browser api
+// for example, we had been using the first version (Api class) with the fetch browser api
 const api = new Api();
 api.operations('www.amazon.com', { x: 1 }, 'get');
 
-# // however we create the new version to use axios because this use the fetch browser api and XMLHttpRequest directly for other browsers that require it that way, so since we create the new version, our team only uses the new way of calling http requests.
+// however we create the new version to use axios because this use the fetch browser api and XMLHttpRequest directly for other browsers that require it that way, so since we create the new version, our team only uses the new way of calling http requests.
 const api2 = new Api2();
 api2.get('www.amazon.com', { x: 1 });
 
-# // but what happen with all the legacy code that it's using the first version for make http calls? Have we to replace it all?... The answer is no because we create an adapter for that, so we only have to replace the call, not the implementation.
-- const api = new Api();
-- api.operations('www.amazon.com', { x: 1 }, 'get');
-+ const adapter = new ApiAdapter();
-+ adapter.operations('www.amazon.com', { x: 1 }, 'get');
+// but what happen with all the legacy code that it's using the first version for make http calls? Have we to replace it all?... The answer is no because we create an adapter for that, so we only have to replace the call, not the implementation.
+-(deleted) const api = new Api();
+-(deleted) api.operations('www.amazon.com', { x: 1 }, 'get');
++(added) const adapter = new ApiAdapter();
++(added) adapter.operations('www.amazon.com', { x: 1 }, 'get');
 ```
 
 <br/>
 
-### :
+<a name="behavior"/>
+
+## Behavior patterns:
