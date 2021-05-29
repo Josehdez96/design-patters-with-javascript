@@ -318,6 +318,7 @@ const asyncFunctionToCallGet = async () => {
 ### Adaptator:
 It's useful when we're using a class, method or library it's starting to give us problems and we want to update it. For update it we'll develop an adapter.
 
+Example.js (**with ES6**):
 ```javascript
 // this is our fist (and a little outdated) version of the class
 class Api {
@@ -385,3 +386,42 @@ api2.get('www.amazon.com', { x: 1 });
 <a name="behavior"/>
 
 ## Behavior patterns:
+
+### Observer:
+The observer pattern consists of two actors, the Observable(or Subject) who publish something and the Observer who subscribe to the Observable changes. They'll be able to interact with each other. So, if the Observable has a change, the Observer who is subscribed will be able to listen that changes and do something (execute a code for example) based on that change. I wrote a good example here: https://josedanielhq.medium.com/observer-pattern-for-dummies-with-javascript-af5e653f75f6
+
+Example.js (**with ES6**):
+```javascript
+// First, we define the YoutubeChannel class
+class YoutubeChannel {
+  observers = [];
+  
+  subscribe(observer) {
+    this.observers.push(observer);
+  }
+
+  unsubscribe(observer) {
+    const index = this.observers.findIndex(obs => {
+      return obs === observer;
+    });
+  }
+
+  notify(newData) {
+    this.observers.forEach(observer => observer.update(newData))
+  }
+}
+
+// Second, we define the YoutubeSubscriptor class that will receive the updates from YoutubeChannel.
+class YoutubeSubscriptor {
+
+  update(newData) {
+    console.log(`We have received new data, that is: ${newData}`);
+  }
+}
+
+// Using the classes created above
+const pewDiePie = new YoutubeChannel();
+const normalUser = new YoutubeSubscriptor();
+pewDiePie.subscribe(normalUser);
+pewDiePie.notify('I have a new video');  // We have received new data, that is: I have a new video
+```
