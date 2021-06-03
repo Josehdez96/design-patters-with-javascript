@@ -12,8 +12,8 @@ I made this because I wanted a document / summary with understandable examples o
 TO DO LIST
 [] Finish Behavior patterns
 
-[] "javascript" for all code instead of "diff"
-[] delete # and replace - and + by (deleted) and (added) for all code
+[X] "javascript" for all code instead of "diff"
+[X] delete # and replace - and + by (deleted) and (added) for all code
 
 [] Table of content Structural patterns
 [] Table of content Behavior patterns
@@ -93,22 +93,22 @@ console.log(myNewInstance); // MyClass {property: 'prop', property2: 'hello', me
 **Remember that almost everything in JavaScript are objects or instances of it, (the only that it isn't objects are the primitive values or types), let's check this statement out with an example from ES5:**
 
 Example2.js (**with ES5**):
-```diff
-# // We're adding a new method to the Object that will show the Object in the console.
+```javascript
+// We're adding a new method to the Object that will show the Object in the console.
 Object.prototype.log = function () {
   console.log(this)
 }
 
 var myObj = { Mykey: 'myValue' };
-# // The above line is syntactic sugar for:
+// The above line is syntactic sugar for:
 var myObj = new Object();
 Object.defineProperty(myObj, 'myKey', {value: 'myValue'});
 
 myObj.log() // {myKey: 'myValue'};
 
-# // We're adding a new method to the String object that will show the String in the console as a warning
+// We're adding a new method to the String object that will show the String in the console as a warning
 String.prototype.showWarn = function () { 
-# // Look! String is an instance of Object, we're accessing to the Prototype (you might already have seen it before as __proto__ in the browser), so yes, almost everything in JavaScript are objects!
+// Look! String is an instance of Object, we're accessing to the Prototype (you might already have seen it before as __proto__ in the browser), so yes, almost everything in JavaScript are objects!
   console.warn(this);
 }
 
@@ -123,7 +123,7 @@ sayHi.showWarn() // (warning) hola
 It is based on the objects literals in JavaScript. When we define a literal object in JavaScript that has methods and properties, we are defining a module.
 
 Example.js (**with ES6+**):
-```diff
+```javascript
 const myModule = {
   prop: 'myProp';
   config: {
@@ -150,7 +150,7 @@ myModule.showLanguage() // 'en'
 Unlike the **Module** design pattern, here, we use closures to define methods and properties either private or public.
 
 Example.js (**with ES6+**):
-```diff
+```javascript
 const myRevealingModule = (() => {
   const myObj = {};
   
@@ -176,10 +176,10 @@ myRevealingModule.show() // {myKey: 'myValue'}
 It's different to ***Constructor with prototypes pattern***. It's based on that we can take a defined object and based on that object we can create another prototypes to other objects (it's how the OOP inheritance is handle with JavaScript ES5), again, thank you ES6 for made the life easier!
 
 Example.js (**with ES5**):
-```diff
+```javascript
 var dog = {
   breed: 'rottweiler',
-#  // We're not using arrow functions in the line above because these doesn't have "this context" and because we're using ES5 in this example
+  // We're not using arrow functions in the line above because these doesn't have "this context" and because we're using ES5 in this example
   bark: function () {
     consolel.log('Guau, Im a' + this.breed);
   }
@@ -188,14 +188,14 @@ var dog = {
 console.log(dog) // {breed: 'rotweiler', bark: [function]}
 
 var mySecondDog = Object.create(dog);
-# // If I'll try to show mySecondDog it logs an empty object because  the properties and methods are in the prototype, I mean in dog
+// If I'll try to show mySecondDog it logs an empty object because  the properties and methods are in the prototype, I mean in dog
 console.log(mySecondDog) // {}
 
 mySecondDog.bark(); // 'Guau, I'm a rottweiler'
 mySecondDog.breed = 'bullterrier';
 mySecondDog.bark() // 'Guau, I'm a bullterrier'
 
-# // If we replace a property or a method, it'll be owned only by the object that it changed it, in the example, only by mySecondDog, the prototype won't be modified
+// If we replace a property or a method, it'll be owned only by the object that it changed it, in the example, only by mySecondDog, the prototype won't be modified
 console.log(mySecondDog) // {breed: 'bullterrier'}
 ```
 <br/>
@@ -208,14 +208,14 @@ console.log(mySecondDog) // {breed: 'bullterrier'}
 This pattern will help us to add more functionality to the prototype of our classes with no need to alter the code inside the class. Therefore, all other new instances of that class will contain the original class and the extended functionalities.
 
 Example.js (**with ES6**):
-```diff
+```javascript
 class User {
   constructor(name) {
     this.name = name;
   }
 }
 
-# //The next one is the object with new methods for the User class
+//The next one is the object with new methods for the User class
 let mixin = {
   sayHi() {
   console.log(`Hi ${this.name}!`);
@@ -225,7 +225,7 @@ let mixin = {
   }
 }
 
-# // We increase the prototype
+// We increase the prototype
 Object.assign(User.prototype, mixin);
 
 const myUser = new User('Toothless');
@@ -245,7 +245,7 @@ It's similar to Mixin pattern, but the main difference is that the Decorator pat
 I'll use the same example as Mixin so you can see the differences.
 
 Example.js (**with ES6**):
-```diff
+```javascript
 class User {
   constructor(name) {
     this.name = name;
@@ -272,10 +272,10 @@ It is used when we want to simplify the call to a function. For example calling 
 Tip: XMLHttpRequest is just for example, you can use browser API fetch or axios, both have already applied this pattern for you ease.
 
 Example.js (**with ES6**):
-```diff
+```javascript
 import https from 'https';
 
-# // we're using the get arrow function to enclose all the XMLHttpRequest boilerplate
+// we're using the get arrow function to enclose all the XMLHttpRequest boilerplate
 const get = (url) => new Promise((resolve, reject), => {
   const completeFormat = url.split('/');
   const host = completeFormat.shift();
@@ -306,7 +306,7 @@ const get = (url) => new Promise((resolve, reject), => {
   })
 });
 
-# // And here we just call the get arrow function instead of all the XMLHttpRequest boilerplate each time
+// And here we just call the get arrow function instead of all the XMLHttpRequest boilerplate each time
 const asyncFunctionToCallGet = async () => {
   const result = await get('jsonplaceholder.typicode.com/users');
   console.log(result); // [{resolved promise}]
