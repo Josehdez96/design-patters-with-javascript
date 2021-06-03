@@ -50,19 +50,19 @@ TO DO LIST
 Here we use the <code>new</code> keyword to create a new object by instantiating a class (this facility or sintactic sugar comes with ES6).
 
 Example.js (**with ES6+**):
-```diff
+```javascript
 class MyClass {
-# // Look, the Constructor is here in the below line!
+  // Look, the Constructor is here in the below line!
   constructor(propertyValue) { 
     this.property = propertyValue;
     this.property2 = 'hello';
     this.method = () => {
-#      // I'm the method
+       // I'm the method
     }
   }
 }
 
-# // We're using the "new" keyword in the next line
+// We're using the "new" keyword in the next line
 const myNewInstance = new MyClass('prop'); 
 console.log(myNewInstance); // MyClass {property: 'prop', property2: 'hello', method: [function]}
 ```
@@ -74,17 +74,17 @@ console.log(myNewInstance); // MyClass {property: 'prop', property2: 'hello', me
 It is similar to the previous one but look that it changes where we defined the method. Be careful with this use because if you instance the class multiple times and change the method in one of these instances, you will change that method for all other instances.
 
 Example.js (**with ES6+**):
-```diff
+```javascript
 class MyClass {
   constructor(propertyValue) {
     this.property = propertyValue;
     this.property2 = 'hello';
--   
+-(deleted)   
   }
-#  // We're using arrow functions here (comes with ES6 as well)
-+ method = () => { 
-+     // I'm the method
-+   }
+  // We're using arrow functions here (comes with ES6 as well)
++(added) method = () => { 
++(added)     // I'm the method
++(added)   }
 }
 
 const myNewInstance = new MyClass('property'); 
