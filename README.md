@@ -15,8 +15,8 @@ TO DO LIST
 [X] "javascript" for all code instead of "diff"
 [X] delete # and replace - and + by (deleted) and (added) for all code
 
-[] Table of content Structural patterns
-[] Table of content Behavior patterns
+[X] Table of content Structural patterns AND test it
+[] Table of content Behavior patterns AND test it
 </code>
 </pre>
 
@@ -35,6 +35,10 @@ TO DO LIST
   -  [Prototype.](#prototy)
 
 - **[Structural patterns.](#structural)**
+  -  [Mixin.](#mixi)
+  -  [Decorator.](#decorato)
+  -  [Facade.](#facad)
+  -  [Adaptator.](#adaptado)
 
 - **[Behavior patterns.](#behavior)**
 
@@ -204,6 +208,8 @@ console.log(mySecondDog) // {breed: 'bullterrier'}
 
 ## Structural patterns:
 
+<a name="mixi"/>
+
 ### Mixin:
 This pattern will help us to add more functionality to the prototype of our classes with no need to alter the code inside the class. Therefore, all other new instances of that class will contain the original class and the extended functionalities.
 
@@ -239,6 +245,8 @@ myAnotherUser.sayHi(); // Hi Astrid
 
 <br/>
 
+<a name="decorato"/>
+
 ### Decorator: 
 It's similar to Mixin pattern, but the main difference is that the Decorator pattern helps us to ONLY add more functionality to a specific instance of the class, not to all instances as Mixin does. Therefore, only a specific instance will change and all other new instances of that class will contain ONLY the original class without the extended functionalities. 
 
@@ -265,6 +273,8 @@ console.log(myAnotherUser); // {name: "Astrid", __proto__: constructor: class Us
 ```
 
 <br/>
+
+<a name="facad"/>
 
 ### Facade: 
 It is used when we want to simplify the call to a function. For example calling another function called <code>get</code> to make a XMLHttpRequest call.
@@ -314,6 +324,8 @@ const asyncFunctionToCallGet = async () => {
 ```
 
 <br/>
+
+<a name="adaptado"/>
 
 ### Adaptator:
 It's useful when we're using a class, method or library it's starting to give us problems and we want to update it. For update it we'll develop an adapter.
