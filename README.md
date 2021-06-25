@@ -437,3 +437,34 @@ const normalUser = new YoutubeSubscriptor();
 pewDiePie.subscribe(normalUser);
 pewDiePie.notify('I have a new video');  // We have received new data, that is: I have a new video
 ```
+
+### Mediator:
+It's similar to the Observer pattern, but in this case, with Observables and Observers intervented by a Mediator. This Mediator will be in charge to handle and dispatch all the events between Observers and Observables. Redux is a famous library that uses this pattern.
+
+```javascript
+const Mediator = (() => {
+  const observers = [];
+  
+  return {
+    subscribe: (newObserver) => {
+      observers.push(newObserver);
+    },
+    emit: (observable, infoToNotify) {
+      observers.forEach((item) => console.log(`${infoToNotify} comming from ${observable}`));
+    }
+  };
+})()
+
+function iWannaSubscribe() {
+  // Some random code here
+};
+
+Mediator().subscribe(iWannaSubscribe);
+
+function iWannaNotify() {
+  // Another random code here
+}
+
+Mediator().emit(iWannaNotify, {hello: 'world'});
+
+```
