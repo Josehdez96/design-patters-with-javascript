@@ -41,6 +41,9 @@ TO DO LIST
   -  [Adaptator.](#adaptado)
 
 - **[Behavior patterns.](#behavior)**
+  - [Observer.](#observe)
+  - [Mediator.](#mediato)
+  - [Command.](#comman)
 
 <br/>
 
@@ -399,6 +402,10 @@ api2.get('www.amazon.com', { x: 1 });
 
 ## Behavior patterns:
 
+<br/>
+
+<a name="observe"/>
+
 ### Observer:
 The observer pattern consists of two actors, the Observable(or Subject) who publish something and the Observer who subscribe to the Observable changes. They'll be able to interact with each other. So, if the Observable has a change, the Observer who is subscribed will be able to listen that changes and do something (execute a code for example) based on that change. I wrote a good example here: https://josedanielhq.medium.com/observer-pattern-for-dummies-with-javascript-af5e653f75f6
 
@@ -438,6 +445,10 @@ pewDiePie.subscribe(normalUser);
 pewDiePie.notify('I have a new video');  // We have received new data, that is: I have a new video
 ```
 
+<br/>
+
+<a name="mediato"/>
+
 ### Mediator:
 It's similar to the Observer pattern, but in this case, with Observables and Observers intervented by a Mediator. This Mediator will be in charge to handle and dispatch all the events between Observers and Observables. Redux is a famous library that uses this pattern.
 
@@ -470,6 +481,10 @@ Mediator().emit(iWannaNotify, {hello: 'world'});
 
 ```
 
+<br/>
+
+<a name="comman"/>
+
 ### Command:
 It give us an unified interface to execute methods without execute its directly, you will able to execute those internal methods with commands as "run", "execute", "call" and so on.
 
@@ -498,5 +513,5 @@ const stocksCommander = (() => {
 
 stockCommander.run('buy', AMZN) // Buying AMZN
 stockCommander.run('sell', TSLA) // Selling TSLA
-stocksCommander.run('idunno', 'tring to break the code') // non-existent command - undefined
+stocksCommander.run('idunno', 'trying to break the code') // non-existent command - undefined
 ```
