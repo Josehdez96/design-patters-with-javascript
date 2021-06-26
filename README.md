@@ -545,3 +545,7 @@ value
   .sum(3) // 7
   .val // 7
 ```
+
+### Iterator:
+Through a function or class we're able to call each iteration and it returns the value of that element of the iteration and if the .
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*
