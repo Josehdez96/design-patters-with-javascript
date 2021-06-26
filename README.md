@@ -441,6 +441,7 @@ pewDiePie.notify('I have a new video');  // We have received new data, that is: 
 ### Mediator:
 It's similar to the Observer pattern, but in this case, with Observables and Observers intervented by a Mediator. This Mediator will be in charge to handle and dispatch all the events between Observers and Observables. Redux is a famous library that uses this pattern.
 
+Example.js (**with ES6**):
 ```javascript
 const Mediator = (() => {
   const observers = [];
@@ -453,7 +454,7 @@ const Mediator = (() => {
       observers.forEach((item) => console.log(`${infoToNotify} comming from ${observable}`));
     }
   };
-})()
+})() // Auto-called function expression
 
 function iWannaSubscribe() {
   // Some random code here
@@ -467,4 +468,35 @@ function iWannaNotify() {
 
 Mediator().emit(iWannaNotify, {hello: 'world'});
 
+```
+
+### Command:
+It give us an unified interface to execute methods without execute its directly, you will able to execute those internal methods with commands as "run", "execute", "call" and so on.
+
+Example.js (**with ES6**):
+```javascript
+const stocksCommander = (() => {
+  const commands = {
+    buy: (stock) => {
+      console.log(`Buying ${stock}`);
+    },
+    sell: (stock) => {
+      console.log(`Selling ${stock}`);
+    }
+  };
+  
+  return {
+    run: (command, stockName) => {
+      if (!commands[command]) {
+        console.log('non-existent command');
+        return undefined;
+      }
+      commands[command](stockName)
+    }
+  };
+})();
+
+stockCommander.run('buy', AMZN) // Buying AMZN
+stockCommander.run('sell', TSLA) // Selling TSLA
+stocksCommander.run('idunno', 'tring to break the code') // non-existent command - undefined
 ```
