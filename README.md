@@ -44,6 +44,7 @@ TO DO LIST
   - [Observer.](#observe)
   - [Mediator.](#mediato)
   - [Command.](#comman)
+  - [Chain of responsability.](#chain)
 
 <br/>
 
@@ -514,4 +515,33 @@ const stocksCommander = (() => {
 stockCommander.run('buy', AMZN) // Buying AMZN
 stockCommander.run('sell', TSLA) // Selling TSLA
 stocksCommander.run('idunno', 'trying to break the code') // non-existent command - undefined
+```
+
+
+### Chain of responsability:
+It's based on we're going to encapsulate a data and we're going to add methods to this data to be able to alter the value that is contained.
+
+<br/>
+
+<a name="chain"/>
+
+Example.js (**with ES6**):
+```javascript
+class Sum {
+  constructor(v = 0) {
+    this.val = v;
+  }
+  
+  add(v) {
+    this.val += v;
+    return this; // This return the class Sum, so we could chain this method as we will do below
+  }
+}
+
+const value = new Sum(1);
+value
+  .sum(1) // 2
+  .sum(2) // 4
+  .sum(3) // 7
+  .val // 7
 ```
