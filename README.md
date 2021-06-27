@@ -45,6 +45,7 @@ TO DO LIST
   - [Mediator.](#mediato)
   - [Command.](#comman)
   - [Chain of responsability.](#chain)
+  - [Iterator.](#iterato)
 
 <br/>
 
@@ -546,6 +547,29 @@ value
   .val // 7
 ```
 
+<br/>
+
+<a name="iterato"/>
+
 ### Iterator:
-Through a function or class we're able to call each iteration and it returns the value of that element of the iteration and if the .
+Through a function or class we're able to call each iteration and it returns the value of that element of the iteration and a know if the iterations are finish.
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*
+
+```javascript
+function* iterador(list) {
+    var nextIndex = 0;
+
+    while (nextIndex < list.length) {
+        yield list[nextIndex++] // when the iterator's next() method is called, the generator function's body is executed until the first yield expression
+    }
+}
+
+const myArray = [1, 2, 3, 4];
+const myGenerator = iterador(myArray);
+console.log(myGenerator.next()); // {value: 1, done: false}
+console.log(myGenerator.next()); // {value: 2, done: false}
+console.log(myGenerator.next()); // {value: 3, done: false}
+console.log(myGenerator.next()); // {value: 4, done: false}
+console.log(myGenerator.next()); // {value: undefined, done: true}
+
+```
