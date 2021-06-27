@@ -7,19 +7,6 @@ I made this because I wanted a document / summary with understandable examples o
 - ***Arrow functions doesn't have "this context".***
 - Design patterns are flexible!
 
-<pre>
-<code>
-TO DO LIST
-[] Finish Behavior patterns
-
-[X] "javascript" for all code instead of "diff"
-[X] delete # and replace - and + by (deleted) and (added) for all code
-
-[X] Table of content Structural patterns AND test it
-[] Table of content Behavior patterns AND test it
-</code>
-</pre>
-
 
 ### There are three types of patterns
 #### * Creational: Those who help us to create objects.
