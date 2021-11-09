@@ -168,9 +168,9 @@ class Bird implements AnimalActions {
   }
 }
 
-// Notice the polymorphism above comparing "Dog" and "Bird"'s "makeSound" method; same method on two different classes with different behaviors.)
+// Notice the polymorphism above comparing "Dog" and "Bird"'s "makeSound" method; same method on two different classes with different behaviors.
 
-// And here is the creation of the subclass through the superclass
+// And here is the instance creation of the subclass through the superclass
 const myFirstdog = AnimalsFactory.getAnimal('dog');
 myFirstdog.makeSound();
 ```
