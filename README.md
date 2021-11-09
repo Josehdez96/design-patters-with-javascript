@@ -17,6 +17,7 @@ I made this because I wanted a document / summary with understandable examples o
 - **[Creational patterns.](#creational)**
   -  [Constructor.](#constr)
   -  [Constructor with prototypes.](#constrproto)
+  -  [Factory.](#factor)
   -  [Module.](#modul)
   -  [Revealing module.](#revmodule)
   -  [Prototype.](#prototy)
@@ -112,6 +113,68 @@ var sayHi = 'Hola';
 sayHi.showWarn() // (warning) hola
 ```
 <br/>
+
+
+<a name="factor"/>
+
+### Factory:
+It give us a superclass that will be used to create subclasses those using the same interface. Those created subclasses can change their method behaviors (the famous polymorphism, where the same method can have different implementations according to the context, for example same method on two completely different classes).
+
+Example.ts (**with TypeScript**):
+```
+interface AnimalActions {
+  makeSound(): void;
+  walk(): boolean;
+  fly(): boolean;
+}
+
+// "AnimalsFactory" is the superclass. Look that we centralize the "choice" logic in this superclass and the each specific logic goes on the subclasses
+class AnimalsFactory {
+  public static getAnimal(animalType: string): AnimalActions {
+    switch (animalType) {
+      case 'dog':
+        return new Dog();
+      case 'bird':
+        return new Bird();
+      default:
+        throw new Error('Error here because the class doesnt exist');
+    }
+  }
+}
+
+// "Dog" is one of the subclasses that implements the given interface
+class Dog implements AnimalActions {
+  makeSound(): void {
+    console.log('Guau, guau');
+  }
+  walk(): boolean {
+    return true;
+  }
+  fly(): boolean {
+    return false;
+  }
+}
+
+// "Bird" is the otherone of the subclasses that implements the given interface
+class Bird implements AnimalActions {
+  makeSound(): void {
+    console.log('Cucu cucu');
+  }
+  walk(): boolean {
+    return true;
+  }
+  fly(): boolean {
+    return true;
+  }
+}
+
+// Notice the polymorphism above comparing "Dog" and "Bird"'s "makeSound" method; same method on two different classes with different behaviors.)
+
+// And here is the creation of the subclass through the superclass
+const myFirstdog = AnimalsFactory.getAnimal('dog');
+myFirstdog.makeSound();
+```
+
 
 <a name="modul"/>
 
