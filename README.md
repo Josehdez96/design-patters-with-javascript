@@ -121,7 +121,7 @@ sayHi.showWarn() // (warning) hola
 It give us a superclass that will be used to create subclasses those using the same interface. Those created subclasses can change their method behaviors (the famous polymorphism, where the same method can have different implementations according to the context, for example same method on two completely different classes).
 
 Example.ts (**with TypeScript**):
-```
+```typescript
 interface AnimalActions {
   makeSound(): void;
   walk(): boolean;
