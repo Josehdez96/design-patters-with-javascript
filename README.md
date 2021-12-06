@@ -15,7 +15,7 @@ I made this because I wanted a document / summary with understandable examples o
 
 ## Table of Contents  
 - **[Creational patterns.](#creational)**
-  -  [Constructor.](#constr)
+  -  [Constructor (Builder).](#constr)
   -  [Constructor with prototypes.](#constrproto)
   -  [Factory.](#factor)
   -  [Module.](#modul)
@@ -43,8 +43,8 @@ I made this because I wanted a document / summary with understandable examples o
 
 <a name="constr"/>
 
-### Constructor:
-Here we use the <code>new</code> keyword to create a new object by instantiating a class (this facility or sintactic sugar comes with ES6).
+### Constructor (Builder):
+It is also commonly called Builder pattern. Here we use the <code>new</code> keyword to create a new object by instantiating a class (this facility or sintactic sugar comes with ES6).
 
 Example.js (**with ES6+**):
 ```javascript
